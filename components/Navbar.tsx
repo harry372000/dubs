@@ -47,11 +47,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
         {/* Logo */}
         <motion.div
+          className="flex items-center"
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.05, ease: EASE }}
         >
-          <Link href="/dashboard" className="text-primary dark:text-white shrink-0">
+          <Link href="/dashboard" className="flex items-center text-primary dark:text-white shrink-0">
             <DubsLogo color="currentColor" scale={0.44} />
           </Link>
         </motion.div>
@@ -59,7 +60,7 @@ export default function Navbar() {
         {/* Nav links */}
         <nav className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map(({ href, label }, i) => (
-            <motion.div key={href} variants={linkVariants} custom={i} initial="hidden" animate="show">
+            <motion.div key={href} className="flex items-center" variants={linkVariants} custom={i} initial="hidden" animate="show">
               <Link
                 href={href}
                 className={cn(

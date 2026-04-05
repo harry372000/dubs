@@ -30,11 +30,12 @@ export default function DubsLogo({
     >
       {/* ── Play icon ── */}
       <svg
-        width={64 * scale}
+        width={62 * scale}
         height={60 * scale}
-        viewBox="0 0 68 60"
+        viewBox="0 0 62 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        style={{ display: "block" }}
       >
         <defs>
           {/* Icon background gradient */}
