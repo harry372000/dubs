@@ -78,7 +78,7 @@ export default function LandingPage() {
           custom={-1}
           className="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto w-full"
         >
-          <DubsLogo color="white" scale={0.5} />
+          <DubsLogo color="white" scale={0.5} showTagline />
           <nav className="flex items-center gap-3">
             <Link href="/sign-in" className="text-sm font-sans px-4 py-2 rounded-lg transition-colors duration-200"
               style={{ color: "rgba(255,255,255,0.55)" }}
@@ -113,13 +113,6 @@ export default function LandingPage() {
                 Any Language.
               </span>
             </motion.h1>
-
-            {/* Tagline */}
-            <motion.p variants={fadeUp} custom={1.5}
-              className="font-sans text-sm font-medium tracking-wide mb-6"
-              style={{ color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em" }}>
-              Lost in translation? Not anymore.
-            </motion.p>
 
             {/* Sub */}
             <motion.p variants={fadeUp} custom={2}
