@@ -27,3 +27,8 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Testing
+playwright/.auth/user.json
+playwright-report/
+test-results/
