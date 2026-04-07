@@ -123,7 +123,7 @@ export default function DubsLogo({
           style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 800,
-            fontSize: 28 * scale,
+            fontSize: 36 * scale,
             letterSpacing: "-0.03em",
             color: color,
             lineHeight: 1,

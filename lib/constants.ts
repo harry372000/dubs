@@ -1,28 +1,29 @@
+import { JobStatus } from "@/lib/types";
+
+// Languages fully supported by ElevenLabs Dubbing API
 export const SUPPORTED_LANGUAGES = [
-  { code: "hi", label: "Hindi" },
-  { code: "es", label: "Spanish" },
-  { code: "fr", label: "French" },
-  { code: "de", label: "German" },
-  { code: "pt", label: "Portuguese" },
-  { code: "ar", label: "Arabic" },
-  { code: "zh", label: "Chinese (Simplified)" },
-  { code: "ja", label: "Japanese" },
-  { code: "ko", label: "Korean" },
-  { code: "ru", label: "Russian" },
-  { code: "it", label: "Italian" },
-  { code: "tr", label: "Turkish" },
-  { code: "bn", label: "Bengali" },
-  { code: "ur", label: "Urdu" },
-  { code: "id", label: "Indonesian" },
+  { code: "hi", label: "Hindi", supported: true },
+  { code: "es", label: "Spanish", supported: true },
+  { code: "fr", label: "French", supported: true },
+  { code: "de", label: "German", supported: true },
+  { code: "pt", label: "Portuguese", supported: true },
+  { code: "ar", label: "Arabic", supported: true },
+  { code: "zh", label: "Chinese (Simplified)", supported: true },
+  { code: "ja", label: "Japanese", supported: true },
+  { code: "ko", label: "Korean", supported: true },
+  { code: "ru", label: "Russian", supported: true },
+  { code: "it", label: "Italian", supported: true },
+  { code: "tr", label: "Turkish", supported: true },
+  { code: "id", label: "Indonesian", supported: true },
+  // Not yet supported by ElevenLabs Dubbing
+  { code: "mr", label: "Marathi (Coming Soon)", supported: false },
+  { code: "bn", label: "Bengali (Coming Soon)", supported: false },
+  { code: "ur", label: "Urdu (Coming Soon)", supported: false },
 ];
 
-export type JobStatus = "pending" | "transcribing" | "translating" | "dubbing" | "done" | "failed";
-
 export const JOB_STATUS_LABELS: Record<JobStatus, string> = {
-  pending: "Queued",
-  transcribing: "Extracting transcript...",
-  translating: "Translating...",
-  dubbing: "Generating dubbed audio...",
-  done: "Ready",
-  failed: "Failed",
+  pending:  "Queued",
+  dubbing:  "Dubbing in progress…",
+  done:     "Ready to watch",
+  failed:   "Failed",
 };

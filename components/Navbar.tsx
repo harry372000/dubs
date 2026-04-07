@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { UserButton } from "@clerk/nextjs";
 import { motion, cubicBezier } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -35,6 +36,8 @@ const linkVariants = {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   return (
     <motion.header
@@ -59,21 +62,45 @@ export default function Navbar() {
 
         {/* Nav links */}
         <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ href, label }, i) => (
-            <motion.div key={href} className="flex items-center" variants={linkVariants} custom={i} initial="hidden" animate="show">
-              <Link
-                href={href}
-                className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-sans font-medium transition-colors",
-                  pathname.startsWith(href)
-                    ? "bg-primary-fixed text-primary dark:bg-surface-highest dark:text-on-surface"
-                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
-                )}
-              >
-                {label}
-              </Link>
-            </motion.div>
-          ))}
+          {NAV_LINKS.map(({ href, label }, i) => {
+            const isActive = pathname.startsWith(href);
+            return (
+              <motion.div key={href} className="flex items-center" variants={linkVariants} custom={i} initial="hidden" animate="show">
+                <Link
+                  href={href}
+                  className="relative px-4 py-2 rounded-lg text-sm font-sans font-medium transition-colors duration-200 flex items-center"
+                  style={{
+                    color: isActive
+                      ? isDark ? "#00e3fd" : "#000666"
+                      : undefined,
+                  }}
+                >
+                  {/* Sliding glow pill */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-pill"
+                      className="absolute inset-0 rounded-lg pointer-events-none"
+                      style={isDark ? {
+                        background: "rgba(0,227,253,0.08)",
+                        boxShadow: "0 0 10px rgba(0,227,253,0.3), 0 0 22px rgba(0,227,253,0.12), inset 0 0 8px rgba(0,227,253,0.05)",
+                      } : {
+                        background: "rgba(0,6,102,0.07)",
+                        boxShadow: "0 0 10px rgba(0,6,102,0.18), 0 0 20px rgba(0,6,102,0.08), inset 0 0 8px rgba(0,6,102,0.04)",
+                      }}
+                      transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                    />
+                  )}
+                  {/* Label */}
+                  <span className={cn(
+                    "relative z-10",
+                    !isActive && "text-on-surface-variant hover:text-on-surface"
+                  )}>
+                    {label}
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </nav>
 
         {/* Voice toggle + User */}
